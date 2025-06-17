@@ -21,7 +21,6 @@ A modern note-taking application built with React and Vite that allows users to 
 - React Router for navigation
 - UUID for unique identifiers
 
-
 ## Components
 
 ### Home Page
@@ -29,10 +28,11 @@ A modern note-taking application built with React and Vite that allows users to 
 The main page where users can:
 
 - Create new notes with title and content
-- View all created notes in a grid layout
-- Pin/unpin notes
+- View all notes in organized sections (Pinned and Other Notes)
+- Pin/unpin notes with visual indicators
 - Archive notes
 - Delete notes
+- Separate sections for pinned and unpinned notes
 
 ### Navbar
 
@@ -51,12 +51,24 @@ Navigation component with:
 
 ### State Management
 
-Uses React's useReducer with actions:
+Uses Context API with useReducer for global state management:
 
-- TITLE: Update note title
-- TEXT: Update note content
-- ADD_NOTE: Create new note
-- CLEAR_INPUT: Reset input fields
+- Context: `NotesProvider` for global notes state
+- Actions:
+  - TITLE: Update note title
+  - TEXT: Update note content
+  - ADD_NOTE: Create new note with unique ID
+  - CLEAR_INPUT: Reset input fields
+  - PIN: Toggle pin status of a note
+
+### NotesCard Component
+
+Reusable card component for displaying notes:
+
+- Title and content display
+- Pin/Unpin toggle with icon changes
+- Archive and Delete options
+- Responsive layout with Tailwind CSS
 
 ## Getting Started
 
