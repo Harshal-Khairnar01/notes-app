@@ -31,7 +31,7 @@ Home
 
 ## State Management
 
-Uses `useReducer` hook with the following structure:
+Uses Context API (`notes.context.jsx`) with `useReducer` hook:
 
 ```javascript
 const initialstate = {
@@ -41,22 +41,36 @@ const initialstate = {
 };
 ```
 
+### Context Structure
+
+- `NotesProvider`: Global state provider component
+- `useNotes`: Custom hook for accessing notes context
+- Provides: `{ title, text, notes, notesDispatch }`
+
 ### Actions
 
 - `TITLE`: Updates the title input
 - `TEXT`: Updates the text input
-- `ADD_NOTE`: Creates a new note
+- `ADD_NOTE`: Creates a new note with isPinned status
 - `CLEAR_INPUT`: Resets the input fields
+- `PIN`: Toggles the isPinned status of a note
 
 ### Note Object Structure
 
 ```javascript
 {
-  id: string,    // UUID
-  title: string,
-  text: string
+  id: string,      // UUID
+  title: string,   // Note title
+  text: string,    // Note content
+  isPinned: boolean // Pin status of the note
 }
 ```
+
+### Notes Organization
+
+Notes are automatically organized into two sections:
+- Pinned Notes: Notes with `isPinned: true`
+- Other Notes: Notes with `isPinned: false`
 
 ## Event Handlers
 
