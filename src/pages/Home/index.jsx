@@ -6,7 +6,7 @@ import NotesCard from "../../components/NotesCard";
 import { useNotes } from "../../context/notes.context";
 
 const Home = () => {
-  const { title,archive, text, notes, notesDispatch } = useNotes();
+  const { title, text, notes, notesDispatch } = useNotes();
 
   const onTitleChange = (e) => {
     notesDispatch({
@@ -35,8 +35,6 @@ const Home = () => {
     notes?.length > 0 && notes.filter(({ isPinned }) => isPinned);
   const otherNotes =
     notes?.length > 0 && notes.filter(({ isPinned }) => !isPinned);
-
-    console.log(archive)
 
   return (
     <>
@@ -83,19 +81,20 @@ const Home = () => {
               </div>
             </div>
           )}
+          {otherNotes?.length > 0 && (
+            <div className=" mt-10">
+              <h2>Other Notes</h2>
 
-          <div className=" mt-10">
-            <h2>Other Notes</h2>
-
-            {
-              <div className=" mt-2 flex flex-wrap gap-4">
-                {otherNotes?.length > 0 &&
-                  otherNotes.map((note) => (
-                    <NotesCard key={note.id} note={note} />
-                  ))}
-              </div>
-            }
-          </div>
+              {
+                <div className=" mt-2 flex flex-wrap gap-4">
+                  {otherNotes?.length > 0 &&
+                    otherNotes.map((note) => (
+                      <NotesCard key={note.id} note={note} />
+                    ))}
+                </div>
+              }
+            </div>
+          )}
         </div>
       </main>
     </>
