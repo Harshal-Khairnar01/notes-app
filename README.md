@@ -67,11 +67,13 @@ Uses Context API with useReducer for global state management:
   - text: Current note content
   - notes: Array of active notes
   - archive: Array of archived notes
+  - important: Array of important notes
   - bin: Array of deleted notes
 - Actions:
   - TITLE: Update note title
   - TEXT: Update note content
   - ADD_NOTE: Create new note with unique ID
+  - ADD_IMPORTANT_NOTE: Create new important note
   - CLEAR_INPUT: Reset input fields
   - PIN: Toggle pin status of a note
   - ARCHIVE: Move note to archive

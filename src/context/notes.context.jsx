@@ -11,7 +11,7 @@ const NotesProvider = ({ children }) => {
     notes: [],
     archive: [],
     important: [],
-    bin: []
+    bin: [],
   };
 
   const [{ title, text, notes,archive,important,bin }, notesDispatch] = useReducer(

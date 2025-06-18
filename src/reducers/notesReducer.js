@@ -19,6 +19,14 @@ export const notesReducer = (state, action) => {
           { text: state.text, title: state.title, id: uuid(), isPinned: false },
         ],
       };
+    case "ADD_IMPORTANT_NOTE":
+      return {
+        ...state,
+        important: [
+          ...state.important,
+          { text: state.text, title: state.title, id: uuid() },
+        ],
+      };
     case "CLEAR_INPUT":
       return {
         ...state,
@@ -64,12 +72,14 @@ export const notesReducer = (state, action) => {
           bin: [
             ...state.bin,
             state.notes.find((note) => note.id === action.payload.id) ||
-              state.archive.find((note) => note.id === action.payload.id),
+              state.archive.find((note) => note.id === action.payload.id) ||
+              state.important.find((note) => note.id === action.payload.id),
           ],
           notes: state.notes.filter((note) => note.id !== action.payload.id),
           archive: state.archive.filter(
             (note) => note.id !== action.payload.id
           ),
+          important: state.important.filter((note) => note.id !== action.payload.id),
         };
       }
     default:
