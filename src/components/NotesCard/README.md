@@ -5,15 +5,25 @@ The NotesCard component is a reusable component for displaying individual notes 
 ## Component Features
 
 ### Display
+
 - Title in header section
 - Content in body section
-- Pin status indicator
-- Action buttons
+- Pin status indicator (hidden in archive)
+- Action buttons with state indicators
 
 ### Interactions
-- Toggle pin status
-- Archive note (UI ready)
+
+- Toggle pin status (active notes only)
+- Archive/Restore note toggle
 - Delete note (UI ready)
+- Visual feedback for archived state
+
+### Archive Integration
+
+- Uses `findNotesInArchive` utility to check note status
+- Conditional rendering of pin button
+- Color indication for archive status
+- Seamless archive/restore functionality
 
 ## Props
 
@@ -31,8 +41,25 @@ The NotesCard component is a reusable component for displaying individual notes 
 ## State Management
 
 Uses the notes context through `useNotes` hook:
+
 - Accesses `notesDispatch` for state updates
-- Handles PIN action
+- Accesses `archive` array for status checks
+- Handles actions:
+  - PIN: Toggle note pinned status
+  - ARCHIVE: Move note to archive
+  - ARCHIVE_REMOVE: Restore note from archive
+
+### Archive State Logic
+
+```javascript
+const isNoteInArchive = findNotesInArchive(archive, note.id);
+
+// Archive toggle logic
+const onArchiveClick = (id) => {
+  !isNoteInArchive
+    ? dispatch({ type: "ARCHIVE", payload: { id } })
+    : dispatch({ type: "ARCHIVE_REMOVE", payload: { id } });
+};
 
 ## UI Elements
 
@@ -65,3 +92,4 @@ Uses Tailwind CSS for:
   - RiInboxArchiveLine
   - AiOutlineDelete
 - notes.context for state management
+```

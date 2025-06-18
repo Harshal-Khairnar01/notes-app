@@ -6,11 +6,14 @@ A modern note-taking application built with React and Vite that allows users to 
 
 - Create and manage notes with title and content
 - Responsive design with sidebar navigation
-- Pin important notes
-- Archive notes for better organization
-- Move notes to bin (trash)
+- Pin important notes with visual indicators
+- Archive system with toggle functionality
+  - Move notes to/from archive
+  - Visual indication for archived notes
+  - Separate archive view
 - Categories: Home, Archive, Important, and Bin
 - Fully responsive UI with mobile support
+- Smart note organization (Pinned and Other Notes)
 
 ## Tech Stack
 
@@ -54,12 +57,19 @@ Navigation component with:
 Uses Context API with useReducer for global state management:
 
 - Context: `NotesProvider` for global notes state
+- Global State Structure:
+  - title: Current note title
+  - text: Current note content
+  - notes: Array of active notes
+  - archive: Array of archived notes
 - Actions:
   - TITLE: Update note title
   - TEXT: Update note content
   - ADD_NOTE: Create new note with unique ID
   - CLEAR_INPUT: Reset input fields
   - PIN: Toggle pin status of a note
+  - ARCHIVE: Move note to archive
+  - ARCHIVE_REMOVE: Restore note from archive
 
 ### NotesCard Component
 
