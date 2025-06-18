@@ -17,12 +17,14 @@ Home
 ## Features
 
 ### Note Input Form
+
 - Title input field
 - Text content textarea
 - Add button (disabled when title is empty)
 - Real-time input validation
 
 ### Notes Grid
+
 - Responsive grid layout
 - Individual note cards with:
   - Title header
@@ -31,46 +33,32 @@ Home
 
 ## State Management
 
-Uses Context API (`notes.context.jsx`) with `useReducer` hook:
+Uses `useReducer` hook with the following structure:
 
 ```javascript
 const initialstate = {
-  title: "",    // Current note title input
-  text: "",     // Current note text input
-  notes: []     // Array of saved notes
+  title: "", // Current note title input
+  text: "", // Current note text input
+  notes: [], // Array of saved notes
 };
 ```
-
-### Context Structure
-
-- `NotesProvider`: Global state provider component
-- `useNotes`: Custom hook for accessing notes context
-- Provides: `{ title, text, notes, notesDispatch }`
 
 ### Actions
 
 - `TITLE`: Updates the title input
 - `TEXT`: Updates the text input
-- `ADD_NOTE`: Creates a new note with isPinned status
+- `ADD_NOTE`: Creates a new note
 - `CLEAR_INPUT`: Resets the input fields
-- `PIN`: Toggles the isPinned status of a note
 
 ### Note Object Structure
 
 ```javascript
 {
-  id: string,      // UUID
-  title: string,   // Note title
-  text: string,    // Note content
-  isPinned: boolean // Pin status of the note
+  id: string,    // UUID
+  title: string,
+  text: string
 }
 ```
-
-### Notes Organization
-
-Notes are automatically organized into two sections:
-- Pinned Notes: Notes with `isPinned: true`
-- Other Notes: Notes with `isPinned: false`
 
 ## Event Handlers
 
@@ -81,6 +69,7 @@ Notes are automatically organized into two sections:
 ## Styling
 
 Uses Tailwind CSS for:
+
 - Responsive layout
 - Grid system for notes
 - Form styling
