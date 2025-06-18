@@ -38,7 +38,6 @@ const NotesCard = ({ note }) => {
   };
 
   const onBinClick = (id) => {
-  
     notesDispatch({
       type: "BIN",
       payload: { id, isNoteInBin },
@@ -46,9 +45,9 @@ const NotesCard = ({ note }) => {
   };
 
   return (
-    <div className=" w-[250px] border-2 border-gray-400 flex flex-col px-3 py-2  rounded-lg gap-2">
-      <div className=" flex items-center justify-between  border-b-2 border-gray-300 p-1">
-        <h2 className="">{note.title}</h2>
+    <div className=" w-[300px] border   bg-[var(--color-card)] dark:bg-[var(--color-card-d)] flex flex-col px-3 py-2  rounded-lg gap-2  shadow-2xl hover:scale-[1.02]  duration-300">
+      <div className=" flex items-center justify-between  border-b border-gray-500 p-1 ">
+        <h2 className=" text-lg text-gray-950">{note.title}</h2>
         {!isNoteInArchive && !isNoteInBin && !isNoteImportant && (
           <button onClick={() => onPinclick(note.id)}>
             {note.isPinned ? (
@@ -60,11 +59,11 @@ const NotesCard = ({ note }) => {
         )}
       </div>
       <div className=" flex  flex-col p-1">
-        <p>{note.text}</p>
+        <p className=" text-gray-700">{note.text}</p>
 
         <div className="mt-3 flex justify-between">
           {isNoteImportant && (
-            <span className=" bg-gray-300 px-2 py-1 rounded-full text-xs">
+            <span className=" bg-[var(--color-head)] text-[var(--color-card)] px-2 py-1 rounded-full text-xs">
               Important
             </span>
           )}
@@ -75,7 +74,9 @@ const NotesCard = ({ note }) => {
             ) : (
               <button
                 onClick={() => onArchiveClick(note.id)}
-                className={`${isNoteInArchive ? " text-amber-400" : ""}`}
+                className={`${
+                  isNoteInArchive ? " text-[var(--color-accent)]" : ""
+                }`}
               >
                 <RiInboxArchiveLine size={20} />
               </button>

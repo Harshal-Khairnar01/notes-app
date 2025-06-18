@@ -1,11 +1,19 @@
 # Memochive - Notes App
 
-A modern note-taking application built with React and Vite that allows users to create, organize, and manage their notes efficiently.
+A modern note-taking application built with React and Tailwind that allows users to create, organize, and manage their notes efficiently.
 
 ## Features
 
 - Create and manage notes with title and content
 - Responsive design with sidebar navigation
+- Theme System
+  - Light/Dark mode toggle
+  - Persistent theme preference
+  - Smooth theme transitions
+- Data Persistence
+  - Automatic save to localStorage
+  - State recovery on page reload
+  - Complete app state preservation
 - Pin important notes with visual indicators
 - Archive system with toggle functionality
   - Move notes to/from archive
@@ -28,6 +36,15 @@ A modern note-taking application built with React and Vite that allows users to 
 - ESLint for code quality
 - React Router for navigation
 - UUID for unique identifiers
+- localStorage for data persistence
+- CSS Variables and Tailwind for theming
+
+## Technical Documentation
+
+Detailed technical documentation is available for specific features:
+
+- [Theme System Documentation](src/docs/THEMING.md)
+- [Local Storage Implementation](src/docs/STORAGE.md)
 
 ## Components
 
@@ -129,5 +146,4 @@ The application will be available at `http://localhost:5173`
 ## Acknowledgments
 
 - React team for the amazing framework
-- Vite team for the blazing fast build tool
 - TailwindCSS team for the utility-first CSS framework

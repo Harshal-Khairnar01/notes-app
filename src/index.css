@@ -1,1 +1,21 @@
 @import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --color-primary: #c7ebff;
+  --color-secondary: #f4faff;
+  --color-accent: #3a7dc9;
+  --color-muted: #eef5ff;
+  --color-head:#0162b1;
+  --color-card:#f4ffaf;
+  --color-input:#bacde1;
+
+  --color-primary-d: #5b1ed6;
+  --color-secondary-d: #2b203b;
+  --color-accent-d: #9bc5f4;
+  --color-muted-d: #003277;
+  --color-head-d:#a4ccec;
+  --color-card-d:#c898ff;
+  --color-input-d:#eafdff;
+}

@@ -1,11 +1,15 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
 
 import { notesReducer } from "../reducers/notesReducer";
 
 const notesContext = createContext();
 
-const NotesProvider = ({ children }) => {
-  const initialstate = {
+const getInitialState = () => {
+  const stored = localStorage.getItem("notesAppState");
+  if (stored) {
+    return JSON.parse(stored);
+  }
+  return {
     title: "",
     text: "",
     notes: [],
@@ -13,14 +17,21 @@ const NotesProvider = ({ children }) => {
     important: [],
     bin: [],
   };
+};
 
-  const [{ title, text, notes,archive,important,bin }, notesDispatch] = useReducer(
-    notesReducer,
-    initialstate
-  );
+const NotesProvider = ({ children }) => {
+
+  const [state, notesDispatch] = useReducer(notesReducer, {}, getInitialState);
+
+  useEffect(() => {
+    localStorage.setItem("notesAppState", JSON.stringify(state));
+  }, [state]);
+  const { title, text, notes, archive, important, bin } = state;
 
   return (
-    <notesContext.Provider value={{ title, text, notes,archive,important,bin, notesDispatch }}>
+    <notesContext.Provider
+      value={{ title, text, notes, archive, important, bin, notesDispatch }}
+    >
       {children}
     </notesContext.Provider>
   );
