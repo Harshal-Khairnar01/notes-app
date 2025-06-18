@@ -10,16 +10,17 @@ const Important = () => {
   return (
     <>
       <Navbar />
-      <main className=" flex gap-2   ">
-        <div className=" w-1/9">
-          <Sidebar />
-        </div>
+      <Sidebar />
+
+      <main className="ml-[80px] lg:ml-[160px] mt-[64px] h-[calc(100vh-64px)] overflow-y-auto p-4 bg-[var(--color-secondary)] dark:bg-[var(--color-secondary-d)]">
         <div className="  w-8/9 p-2 flex flex-col">
           <NotesInputform isImportantPage={true} />
           <div className=" mt-10">
-            <h2 className=" text-xl">Important Notes</h2>
+            <h2 className=" text-2xl text-center text-[var(--color-head)] dark:text-[var(--color-head-d)]">
+              Important Notes
+            </h2>
             {
-              <div className=" mt-2 flex flex-wrap gap-4">
+              <div className="justify-center lg:justify-normal  mt-2 flex flex-wrap gap-4">
                 {important?.length > 0 &&
                   important.map((note) => (
                     <NotesCard key={note.id} note={note} />

@@ -4,13 +4,16 @@ import "./index.css";
 import App from "./App.jsx";
 import { BrowserRouter } from "react-router-dom";
 import { NotesProvider } from "./context/notes.context.jsx";
+import { ThemeProvider } from "./context/theme.context.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
-      <NotesProvider>
-        <App />
-      </NotesProvider>
+      <ThemeProvider>
+        <NotesProvider>
+          <App />
+        </NotesProvider>
+      </ThemeProvider>
     </BrowserRouter>
   </StrictMode>
 );
