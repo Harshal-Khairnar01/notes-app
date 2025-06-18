@@ -11,6 +11,11 @@ A modern note-taking application built with React and Vite that allows users to 
   - Move notes to/from archive
   - Visual indication for archived notes
   - Separate archive view
+- Recycle bin functionality
+  - Move notes to bin from any view
+  - Permanently delete notes from bin
+  - Restore notes from bin
+  - Empty state handling
 - Categories: Home, Archive, Important, and Bin
 - Fully responsive UI with mobile support
 - Smart note organization (Pinned and Other Notes)
@@ -62,6 +67,7 @@ Uses Context API with useReducer for global state management:
   - text: Current note content
   - notes: Array of active notes
   - archive: Array of archived notes
+  - bin: Array of deleted notes
 - Actions:
   - TITLE: Update note title
   - TEXT: Update note content
@@ -70,6 +76,7 @@ Uses Context API with useReducer for global state management:
   - PIN: Toggle pin status of a note
   - ARCHIVE: Move note to archive
   - ARCHIVE_REMOVE: Restore note from archive
+  - BIN: Move to/permanently delete from bin
 
 ### NotesCard Component
 

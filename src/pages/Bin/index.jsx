@@ -4,9 +4,9 @@ import Sidebar from "../../components/Sidebar";
 import { useNotes } from "../../context/notes.context";
 import NotesCard from "../../components/NotesCard";
 
-const Archive = () => {
-  const { archive } = useNotes();
-
+const Bin = () => {
+  const { bin } = useNotes();
+  console.log(bin);
   return (
     <>
       <Navbar />
@@ -16,11 +16,11 @@ const Archive = () => {
         </div>
         <div className="  w-8/9 p-4 flex flex-col">
           <div className=" mt-2 flex flex-wrap gap-4">
-            {archive?.length > 0 ? (
-              archive.map((note) => <NotesCard key={note.id} note={note} />)
+            {bin?.length > 0 ? (
+              bin.map((note) => <NotesCard key={note.id} note={note} />)
             ) : (
               <div>
-                <h1 className=" text-3xl">Noting in Archive!</h1>
+                <h1 className=" text-3xl">Noting in Bin!</h1>
               </div>
             )}
           </div>
@@ -30,4 +30,4 @@ const Archive = () => {
   );
 };
 
-export default Archive;
+export default Bin;

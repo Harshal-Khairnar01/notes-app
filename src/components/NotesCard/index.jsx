@@ -6,11 +6,14 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { useNotes } from "../../context/notes.context";
 import { TbPinnedFilled } from "react-icons/tb";
 import { findNotesInArchive } from "../../utils/findNotesInArchive";
+import { findNotesInBin } from "../../utils/findNotesInBin";
 
 const NotesCard = ({ note }) => {
-  const { notesDispatch, archive } = useNotes();
+  const { notesDispatch, archive, bin } = useNotes();
 
   const isNoteInArchive = findNotesInArchive(archive, note.id);
+
+  const isNoteInBin = findNotesInBin(bin, note.id);
 
   const onPinclick = (id) => {
     notesDispatch({
@@ -33,11 +36,18 @@ const NotesCard = ({ note }) => {
         });
   };
 
+  const onBinClick = (id) => {
+    notesDispatch({
+      type: "BIN",
+      payload: { id, isNoteInBin },
+    });
+  };
+
   return (
     <div className=" w-[250px] border-2 border-gray-400 flex flex-col p-3  rounded-lg gap-2">
       <div className=" flex items-center justify-between  border-b-2 border-gray-300 p-1">
         <h2 className="">{note.title}</h2>
-        {!isNoteInArchive && (
+        {!isNoteInArchive && !isNoteInBin && (
           <button onClick={() => onPinclick(note.id)}>
             {note.isPinned ? (
               <TbPinnedFilled size={20} />
@@ -50,13 +60,18 @@ const NotesCard = ({ note }) => {
       <div className=" flex  flex-col p-1">
         <p>{note.text}</p>
         <div className=" flex gap-3 ml-auto ">
-          <button
-            onClick={() => onArchiveClick(note.id)}
-            className={`${isNoteInArchive ? " text-amber-400" : ""}`}
-          >
-            <RiInboxArchiveLine size={20} />
-          </button>
-          <button>
+          {isNoteInBin ? (
+            <></>
+          ) : (
+            <button
+              onClick={() => onArchiveClick(note.id)}
+              className={`${isNoteInArchive ? " text-amber-400" : ""}`}
+            >
+              <RiInboxArchiveLine size={20} />
+            </button>
+          )}
+
+          <button onClick={() => onBinClick(note.id)}>
             <AiOutlineDelete size={20} />
           </button>
         </div>

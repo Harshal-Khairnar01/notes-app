@@ -52,6 +52,26 @@ export const notesReducer = (state, action) => {
         ],
         archive: state.archive.filter((note) => note.id !== action.payload.id),
       };
+    case "BIN":
+      if (action.payload.isNoteInBin) {
+        return {
+          ...state,
+          bin: state.bin.filter((note) => note.id !== action.payload.id),
+        };
+      } else {
+        return {
+          ...state,
+          bin: [
+            ...state.bin,
+            state.notes.find((note) => note.id === action.payload.id) ||
+              state.archive.find((note) => note.id === action.payload.id),
+          ],
+          notes: state.notes.filter((note) => note.id !== action.payload.id),
+          archive: state.archive.filter(
+            (note) => note.id !== action.payload.id
+          ),
+        };
+      }
     default:
       return state;
   }
