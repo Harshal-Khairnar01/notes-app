@@ -6,7 +6,7 @@ import NotesCard from "../../components/NotesCard";
 
 const Bin = () => {
   const { bin } = useNotes();
-  console.log(bin);
+
   return (
     <>
       <Navbar />
